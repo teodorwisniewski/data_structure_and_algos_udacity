@@ -1,6 +1,8 @@
 from datetime import date
+import calendar
 
 DAYS_OF_MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+LEAP_YEARS = [year for year in range(1800, 2200) if calendar.isleap(year)]
 
 
 def _extract_months_days_between_dates(month1, month2):
@@ -39,7 +41,11 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
         delta_years = abs(year2 - year1)
         return delta_years * sum(DAYS_OF_MONTHS)
 
-    nb_days = DAYS_OF_MONTHS[month1 - 1] - day1
+    if year1 in LEAP_YEARS and month1 == 2:
+        nb_days = 29 - day1
+    else:
+        nb_days = DAYS_OF_MONTHS[month1 - 1] - day1
+
     nb_days += day2
 
     if month1 != month2 and abs(month1 - month2) > 1:
@@ -48,12 +54,18 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     elif month1 == month2 and year1 == year2:
         return day2 - day1
 
-    delta_years = abs(year2 - year1) - 1
+    delta_years = abs(year2 - year1) - 1 if year1 != year2 else 0
     nb_days += delta_years * sum(DAYS_OF_MONTHS)
     return nb_days
 
 
 def testDaysBetweenDates():
+    # test same day
+    assert (daysBetweenDates(2020, 2, 15,
+                             2020, 3, 5) == (date(2020, 3, 5) - date(2020, 2, 15)).days)
+
+    assert (daysBetweenDates(2020, 2, 15,
+                             2024, 3, 5) == (date(2024, 3, 5) - date(2020, 2, 15)).days)
     # test same day
     assert (daysBetweenDates(2017, 12, 30,
                              2017, 12, 30) == 0)
