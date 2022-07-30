@@ -61,6 +61,9 @@ def testDaysBetweenDates():
     assert (daysBetweenDates(2017, 12, 30,
                              2017, 12, 31) == 1)
 
+    assert (daysBetweenDates(2017, 12, 31,
+                             2018, 1, 1) == 1)
+
     # test adjacent days
     assert (daysBetweenDates(2017, 12, 31,
                              2018, 2, 1) == (date(2018, 2, 1) - date(2017, 12, 31)).days)
