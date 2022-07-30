@@ -6,8 +6,18 @@ DAYS_OF_MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 LEAP_YEARS = [year for year in range(1800, 2200) if calendar.isleap(year)]
 
 
+def is_leap_year(year):
+    if (year % 4) == 0:
+        return True
+    elif (year % 100) != 0:
+        return False
+    elif (year % 400) != 0:
+        return False
+    return True
+
+
 def get_days_in_month(month, year):
-    if year in LEAP_YEARS and month == 2:
+    if is_leap_year(year) and month == 2:
         return 29
     else:
         return DAYS_OF_MONTHS[month-1]
@@ -56,6 +66,33 @@ def testDaysBetweenDates():
     # test adjacent days
     assert (daysBetweenDates(2017, 12, 30,
                              2017, 12, 31) == 1)
+    # test new year
+    assert (daysBetweenDates(2017, 12, 30,
+                             2018, 1, 1) == 2)
+
+    # test same day
+    assert (daysBetweenDates(2020, 2, 15,
+                             2020, 3, 5) == (date(2020, 3, 5) - date(2020, 2, 15)).days)
+
+    assert (daysBetweenDates(2020, 2, 15,
+                             2024, 3, 5) == (date(2024, 3, 5) - date(2020, 2, 15)).days)
+
+    # test adjacent days
+    assert (daysBetweenDates(2017, 12, 30,
+                             2017, 12, 31) == 1)
+
+    assert (daysBetweenDates(2017, 12, 31,
+                             2018, 1, 1) == 1)
+
+    # test adjacent days
+    assert (daysBetweenDates(2017, 12, 31,
+                             2018, 2, 1) == (date(2018, 2, 1) - date(2017, 12, 31)).days)
+
+    assert (daysBetweenDates(2017, 12, 31,
+                             2019, 2, 1) == (date(2019, 2, 1) - date(2017, 12, 31)).days)
+
+    assert (daysBetweenDates(2016, 12, 31,
+                             2019, 2, 1) == (date(2019, 2, 1) - date(2016, 12, 31)).days)
     # test new year
     assert (daysBetweenDates(2017, 12, 30,
                              2018, 1, 1) == 2)
