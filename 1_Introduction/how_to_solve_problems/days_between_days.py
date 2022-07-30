@@ -1,3 +1,8 @@
+from calendar import monthrange
+
+
+DAYS_OF_MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     """
     Calculates the number of days between two dates.
@@ -29,3 +34,9 @@ def testDaysBetweenDates():
 
 
 testDaysBetweenDates()
+
+
+if __name__ == "__main__":
+    test()
+
+    print("end")
