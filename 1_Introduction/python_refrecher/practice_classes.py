@@ -1,3 +1,8 @@
+"""
+Class practice - easy
+"""
+
+
 class Person:
     def __init__(self, name, age, month):
         self.name = name
@@ -76,6 +81,7 @@ def test():
     # Calls to the two functions you have completed.
     print(get_april_birthdays(people))
     print(get_most_common_month(people))
+
 
 if __name__ == "__main__":
     test()
