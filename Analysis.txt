@@ -1,0 +1,18 @@
+
+We have five tasks to do. Once it is done, we want to calculate Big 0 of the run time for each task.
+
+TASK 0
+We used two print statements for our solution. No loop is used. Thus, we can approximate run time with Big O(const),
+which can be further simplified to O(n).
+
+TASK 1
+We used 2 loops that are not nested. Thus, we can approximate run time with Big O(2n + const), which can be further simplified to O(n).
+
+TASK 2
+We used one loop. Thus, we can approximate run time with Big O(n + const), which can be further simplified to O(n).
+
+TASK3
+We used five loops that were not nested. Thus, we can approximate run time with Big O(5n+const), which can be further simplified to O(n).
+
+TASK4:
+We used three loops that were not nested. Thus, we can approximate run time with Big O(3n+const), which can be further simplified to O(n).
