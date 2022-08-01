@@ -1,5 +1,6 @@
 """In this module I check sudoku squares"""
 
+
 def check_value(val, sqaure_size):
     if not isinstance(val, int):
         return False
@@ -29,7 +30,6 @@ def check_sudoku(square_list):
             return False
 
     return flag
-
 
 
 if __name__ == "__main__":
