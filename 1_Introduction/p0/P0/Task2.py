@@ -1,14 +1,16 @@
 from collections import defaultdict
+
 """
 Read file into texts and calls.
 It's ok if you don't understand how to read files
 """
 import csv
-with open('texts.csv', 'r') as f:
+
+with open("texts.csv", "r") as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-with open('calls.csv', 'r') as f:
+with open("calls.csv", "r") as f:
     reader = csv.reader(f)
     calls = list(reader)
 
@@ -30,5 +32,7 @@ for call in calls:
     telephone_numbers[answering_number] += duration
 
 number_longest_time_spent = max(telephone_numbers, key=telephone_numbers.get)
-print(f"{number_longest_time_spent} spent the longest time, {telephone_numbers[number_longest_time_spent]}" \
-        "seconds, on the phone during  September 2016.")
+print(
+    f"{number_longest_time_spent} spent the longest time, {telephone_numbers[number_longest_time_spent]}"
+    "seconds, on the phone during  September 2016."
+)

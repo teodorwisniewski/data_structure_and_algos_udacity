@@ -4,11 +4,11 @@ It's ok if you don't understand how to read files.
 """
 import csv
 
-with open('texts.csv', 'r') as f:
+with open("texts.csv", "r") as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-with open('calls.csv', 'r') as f:
+with open("calls.csv", "r") as f:
     reader = csv.reader(f)
     calls = list(reader)
 
@@ -46,4 +46,3 @@ sorted_list = sorted(possible_telemarketers_numbers)
 print("These numbers could be telemarketers: ")
 for number in sorted_list:
     print(number)
-

@@ -5,11 +5,11 @@ It's ok if you don't understand how to read files.
 import csv
 import re
 
-with open('texts.csv', 'r') as f:
+with open("texts.csv", "r") as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-with open('calls.csv', 'r') as f:
+with open("calls.csv", "r") as f:
     reader = csv.reader(f)
     calls = list(reader)
 
@@ -61,7 +61,9 @@ for call in calls:
     answering_number = call[1]
     unique_numbers.add(answering_number)
 
-bangalore_fixed_lines = [number for number in unique_numbers if number.startswith("(080)")]
+bangalore_fixed_lines = [
+    number for number in unique_numbers if number.startswith("(080)")
+]
 
 area_codes_bangalore = set()
 for call in calls:
@@ -93,6 +95,8 @@ for call in calls:
         if answering_number in bangalore_fixed_lines:
             total_answering_bangalore_calls += 1
 
-percentage = 100 * total_answering_bangalore_calls/total_incoming_bangalore_calls
-print(f"{percentage:.2f} percent of calls from fixed lines in Bangalore are calls " \
-      "to other fixed lines in Bangalore.")
+percentage = 100 * total_answering_bangalore_calls / total_incoming_bangalore_calls
+print(
+    f"{percentage:.2f} percent of calls from fixed lines in Bangalore are calls "
+    "to other fixed lines in Bangalore."
+)

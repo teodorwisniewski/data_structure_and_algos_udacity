@@ -8,8 +8,8 @@ We have five tasks to do. Once it is done, we want to calculate Big 0 of the run
 
 
 ## Task 0 - run time analysis (Worst Case Big-O Notation)
-We used two print statements for our solution. No loop is used.
-We can approximate run time with Big O(1).
+We used two print statements for our solution. No loop is used. Thus, we can approximate run time with Big O(const),
+which can be further simplified to O(n).
 
 
 ## Task 1 - run time analysis (Worst Case Big-O Notation)

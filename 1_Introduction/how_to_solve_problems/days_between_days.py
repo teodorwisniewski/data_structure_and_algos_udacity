@@ -9,7 +9,7 @@ def _extract_months_days_between_dates(month1, month2):
     """
     :param month1: starting  month
     :param month2: ending month
-    :return: 
+    :return:
         examples:
         month1=1, month2=3 -> output= [28] # February days
         month1=1, month2=5 -> output= [28, 31, 30] # February, March and April days
@@ -20,11 +20,13 @@ def _extract_months_days_between_dates(month1, month2):
     if abs(month1 - month2) < 2:
         return [0]
     elif month2 > month1:
-        extracted_days = DAYS_OF_MONTHS[month1:month2 - 1]
+        extracted_days = DAYS_OF_MONTHS[month1 : month2 - 1]
         return extracted_days
     else:
         till_end_of_year = DAYS_OF_MONTHS[month1:12] if month1 < 12 else []
-        from_the_start_of_the_year = DAYS_OF_MONTHS[0:(month2 - 1)] if month1 > 1 else []
+        from_the_start_of_the_year = (
+            DAYS_OF_MONTHS[0 : (month2 - 1)] if month1 > 1 else []
+        )
         extracted_days = till_end_of_year + from_the_start_of_the_year
         return extracted_days
 
@@ -61,36 +63,41 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
 
 def testDaysBetweenDates():
     # test same day
-    assert (daysBetweenDates(2020, 2, 15,
-                             2020, 3, 5) == (date(2020, 3, 5) - date(2020, 2, 15)).days)
+    assert (
+        daysBetweenDates(2020, 2, 15, 2020, 3, 5)
+        == (date(2020, 3, 5) - date(2020, 2, 15)).days
+    )
 
-    assert (daysBetweenDates(2020, 2, 15,
-                             2024, 3, 5) == (date(2024, 3, 5) - date(2020, 2, 15)).days)
+    assert (
+        daysBetweenDates(2020, 2, 15, 2024, 3, 5)
+        == (date(2024, 3, 5) - date(2020, 2, 15)).days
+    )
     # test same day
-    assert (daysBetweenDates(2017, 12, 30,
-                             2017, 12, 30) == 0)
+    assert daysBetweenDates(2017, 12, 30, 2017, 12, 30) == 0
     # test adjacent days
-    assert (daysBetweenDates(2017, 12, 30,
-                             2017, 12, 31) == 1)
+    assert daysBetweenDates(2017, 12, 30, 2017, 12, 31) == 1
 
-    assert (daysBetweenDates(2017, 12, 31,
-                             2018, 1, 1) == 1)
+    assert daysBetweenDates(2017, 12, 31, 2018, 1, 1) == 1
 
     # test adjacent days
-    assert (daysBetweenDates(2017, 12, 31,
-                             2018, 2, 1) == (date(2018, 2, 1) - date(2017, 12, 31)).days)
+    assert (
+        daysBetweenDates(2017, 12, 31, 2018, 2, 1)
+        == (date(2018, 2, 1) - date(2017, 12, 31)).days
+    )
 
-    assert (daysBetweenDates(2017, 12, 31,
-                             2019, 2, 1) == (date(2019, 2, 1) - date(2017, 12, 31)).days)
+    assert (
+        daysBetweenDates(2017, 12, 31, 2019, 2, 1)
+        == (date(2019, 2, 1) - date(2017, 12, 31)).days
+    )
 
-    assert (daysBetweenDates(2016, 12, 31,
-                             2019, 2, 1) == (date(2019, 2, 1) - date(2016, 12, 31)).days)
+    assert (
+        daysBetweenDates(2016, 12, 31, 2019, 2, 1)
+        == (date(2019, 2, 1) - date(2016, 12, 31)).days
+    )
     # test new year
-    assert (daysBetweenDates(2017, 12, 30,
-                             2018, 1, 1) == 2)
+    assert daysBetweenDates(2017, 12, 30, 2018, 1, 1) == 2
     # test full year difference
-    assert (daysBetweenDates(2012, 6, 29,
-                             2013, 6, 29) == 365)
+    assert daysBetweenDates(2012, 6, 29, 2013, 6, 29) == 365
 
     print("Congratulations! Your daysBetweenDates")
     print("function is working correctly!")
