@@ -5,3 +5,7 @@
 *.zip
 .idea
 pytest_cache
+tw_InvestigatingTextsandCalls_
+__MACOSX
+.DS_Store
+*.pdf
