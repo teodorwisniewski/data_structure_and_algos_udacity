@@ -104,6 +104,10 @@ class LinkedList:
         last_node.next = Node(value)
         return
 
+    def size(self):
+        """ Return the size or length of the linked list. """
+
+        return len(self.to_list())
 
 if __name__ == "__main__":
     linked_list = LinkedList()
@@ -152,3 +156,6 @@ if __name__ == "__main__":
     print(f"insertin 50 to the list at position 50")
     linked_list.insert(50, 50)
     print(linked_list.to_list())
+
+    print(f"checking size of the linked list")
+    print(linked_list.size())
