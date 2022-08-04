@@ -1,7 +1,5 @@
 
 
-
-
 class Node:
 
     def __init__(self, value):
@@ -19,7 +17,6 @@ def create_linked_list(list_):
             tail.next = Node(value)
             tail = tail.next
     return head
-
 
 
 def read_linked_list(head):
