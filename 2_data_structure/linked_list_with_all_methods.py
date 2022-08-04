@@ -75,7 +75,34 @@ class LinkedList:
             self.head = self.head.next
             return popped_head.value
 
+    def insert(self, value, pos):
+        """ Insert value at pos position in the list. If pos is larger than the
+        length of the list, append to the end of the list. """
+        if self.head is not None and self.head.next is None and pos == 0:
+            previous_head = self.head
+            self.head = Node(value)
+            self.head.next = previous_head
+            return
 
+        counter = 0
+        last_node = self.head
+        while last_node.next is not None:
+            if counter == pos and last_node is self.head:
+                previous_node = self.head
+                self.head = Node(value)
+                self.head.next = previous_node
+                return
+            elif counter == pos:
+                next_node = last_node
+                last_node = Node(value)
+                last_node.next = next_node
+                previous_node.next = last_node
+                return
+            counter += 1
+            previous_node = last_node
+            last_node = last_node.next
+        last_node.next = Node(value)
+        return
 
 
 if __name__ == "__main__":
@@ -109,4 +136,19 @@ if __name__ == "__main__":
     print(linked_list.to_list())
     value = linked_list.pop()
     print(f"popped value is {value}")
+    print(linked_list.to_list())
+    print(f"insertin 5 to the list at position 0")
+    linked_list.insert(5, 0)
+    print(linked_list.to_list())
+    print(f"insertin 6 to the list at position 0")
+    linked_list.insert(6, 0)
+    print(linked_list.to_list())
+    print(f"insertin 1 to the list at position 1")
+    linked_list.insert(1, 1)
+    print(linked_list.to_list())
+    print(f"insertin 2 to the list at position 2")
+    linked_list.insert(2, 2)
+    print(linked_list.to_list())
+    print(f"insertin 50 to the list at position 50")
+    linked_list.insert(50, 50)
     print(linked_list.to_list())
