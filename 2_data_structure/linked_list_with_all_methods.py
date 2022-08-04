@@ -68,6 +68,15 @@ class LinkedList:
             last_node = last_node.next
         return
 
+    def pop(self):
+        """ Return the first node's value and remove it from the list. """
+        if self.head is not None:
+            popped_head = self.head
+            self.head = self.head.next
+            return popped_head.value
+
+
+
 
 if __name__ == "__main__":
     linked_list = LinkedList()
@@ -97,4 +106,7 @@ if __name__ == "__main__":
     print(linked_list.to_list())
     print("Removing 3 from the linked list")
     linked_list.remove(3)
+    print(linked_list.to_list())
+    value = linked_list.pop()
+    print(f"popped value is {value}")
     print(linked_list.to_list())
