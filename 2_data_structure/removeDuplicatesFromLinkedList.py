@@ -41,7 +41,11 @@ def traverse_linked_list(linked_list):
 
 
 def removeDuplicatesFromLinkedList(linked_list):
-    # Write your code here.
+    """
+    Space complexity Big O(M)
+    :param linked_list:
+    :return:
+    """
     if linked_list is None:
         return LinkedList()
 
