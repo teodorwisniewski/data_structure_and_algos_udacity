@@ -40,6 +40,12 @@ def traverse_linked_list(linked_list):
 
 
 def removeDuplicatesFromLinkedList(linked_list):
+    """
+    Space complexity O(1)
+    Time complexity O(N)
+    :param linked_list:
+    :return:
+    """
 
     head = linked_list
     node = head
