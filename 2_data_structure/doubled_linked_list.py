@@ -1,9 +1,14 @@
+"""
+Doubly linked list exercice
+"""
+
 def getNodeValuesHeadToTail(linkedList):
     values = []
     node = linkedList.head
     while node is not None:
         values.append(node.value)
         node = node.next
+    print(values)
     return values
 
 
@@ -13,12 +18,13 @@ def getNodeValuesTailToHead(linkedList):
     while node is not None:
         values.append(node.value)
         node = node.prev
+    print(values)
     return values
 
 
-def bindNodes(nodeOne, nodeTwo):
-    nodeOne.next = nodeTwo
-    nodeTwo.prev = nodeOne
+def bindNodes(node_one, node_two):
+    node_one.next = node_two
+    node_two.prev = node_one
 
 
 
@@ -40,8 +46,6 @@ class DoublyLinkedList:
     def setHead(self, node):
         if node.next is not None or node.prev is not None:
             self.remove(node)
-
-
         old_head = self.head
         if old_head is not None:
             self.head = node
@@ -52,13 +56,17 @@ class DoublyLinkedList:
             self.head = node
 
     def setTail(self, node):
-        temp = self.tail
-        if temp is not None:
+        if node.next is not None or node.prev is not None:
+            self.remove(node)
+        old_tail = self.tail
+        if old_tail is not None:
             self.tail = node
             self.tail.next = None
-            self.tail.prev = temp
+            self.tail.prev = old_tail
+            old_tail.next = self.tail
         else:
-            self.temp = node
+            self.tail = node
+            self.head = node
 
     def insertBefore(self, node, nodeToInsert):
         # Write your code here.
@@ -89,18 +97,16 @@ class DoublyLinkedList:
             # removing head
             new_head = node.next
             new_head.prev = None
-            self.head = new_head
+            head = new_head
             node.next = None
             node.prev = None
-        elif node.next is not None and node.prev is not None:
+        elif node.next is None and node.prev is not None:
             # removing tail
             new_tail = node.prev
             new_tail.next = None
-            self.tail = new_tail
+            tail = new_tail
             node.next = None
             node.prev = None
-        else:
-            assert False, "remove It should never happen"
 
 
     def containsNodeWithValue(self, value):
@@ -129,3 +135,40 @@ if __name__ == "__main__":
 
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 3, 5]
     assert getNodeValuesTailToHead(linkedList) == [5, 3, 2, 1, 4]
+
+
+
+    linkedList.setTail(six)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 3, 5, 6]
+    assert getNodeValuesTailToHead(linkedList) == [6, 5, 3, 2, 1, 4]
+
+    linkedList.insertBefore(six, three)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 5, 3, 6]
+    assert getNodeValuesTailToHead(linkedList) == [6, 3, 5, 2, 1, 4]
+
+    linkedList.insertAfter(six, three2)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 5, 3, 6, 3]
+    assert getNodeValuesTailToHead(linkedList) == [3, 6, 3, 5, 2, 1, 4]
+
+    linkedList.insertAtPosition(1, three3)
+    assert getNodeValuesHeadToTail(linkedList) == [3, 4, 1, 2, 5, 3, 6, 3]
+    assert getNodeValuesTailToHead(linkedList) == [3, 6, 3, 5, 2, 1, 4, 3]
+
+    linkedList.removeNodesWithValue(3)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 5, 6]
+    assert getNodeValuesTailToHead(linkedList) == [6, 5, 2, 1, 4]
+
+    linkedList.remove(two)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 5, 6]
+    assert getNodeValuesTailToHead(linkedList) == [6, 5, 1, 4]
+
+    # assert  linkedList.containsNodeWithValue(5), True)
+
+
+    linkedList.setHead(five)
+    assert getNodeValuesHeadToTail(linkedList) == [5, 4, 1, 2, 3]
+    assert getNodeValuesTailToHead(linkedList) == [3, 2, 1, 4, 5]
+
+    linkedList.setHead(five)
+    assert getNodeValuesHeadToTail(linkedList) == [5, 4, 1, 2, 3]
+    assert getNodeValuesTailToHead(linkedList) == [3, 2, 1, 4, 5]
