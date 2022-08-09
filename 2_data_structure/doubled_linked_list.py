@@ -143,10 +143,16 @@ class DoublyLinkedList:
             node.next = None
             node.prev = None
 
-
     def containsNodeWithValue(self, value):
-        # Write your code here.
-        pass
+        current_node = self.head
+        while current_node.next is not None:
+            if current_node.value == value:
+                return True
+            else:
+                current_node = current_node.next
+        if current_node.value == value:
+            return True
+        return False
 
 
 if __name__ == "__main__":
@@ -211,6 +217,9 @@ if __name__ == "__main__":
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 5, 6]
     assert getNodeValuesTailToHead(linkedList) == [6, 5, 1, 4]
 
-    # assert  linkedList.containsNodeWithValue(5), True)
+    assert linkedList.containsNodeWithValue(5) is True
+    assert linkedList.containsNodeWithValue(9) is False
+    assert linkedList.containsNodeWithValue(4) is True
+    assert linkedList.containsNodeWithValue(6) is True
 
 
