@@ -108,8 +108,16 @@ class DoublyLinkedList:
 
 
     def removeNodesWithValue(self, value):
-        # Write your code here.
-        pass
+        current_node = self.head
+        while current_node.next is not None:
+            if current_node.value == value:
+                new_current_node = current_node.next
+                self.remove(current_node)
+                current_node = new_current_node
+            else:
+                current_node = current_node.next
+        if current_node.value == value:
+            self.remove(current_node)
 
     def remove(self, node):
         if node.next is not None and node.prev is not None:
