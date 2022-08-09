@@ -98,7 +98,8 @@ class DoublyLinkedList:
     def insertAtPosition(self, position, nodeToInsert):
         if nodeToInsert.next is not None or nodeToInsert.prev is not None:
             self.remove(nodeToInsert)
-            position -= 1
+            if position != 1:
+                position -= 1
 
         counter = 1
         current_node = self.head
@@ -317,6 +318,16 @@ if __name__ == "__main__":
     assert getNodeValuesTailToHead(linkedList) == [2, 3, 4, 5, 6, 1, 7][::-1]
     assert linkedList.tail.value == 7
     assert linkedList.head.value == 2
+
+
+    print(len(getNodeValuesTailToHead(linkedList)))
+    linkedList.insertAtPosition(1, one)
+    assert getNodeValuesHeadToTail(linkedList) == [1, 2, 3, 4, 5, 6, 7]
+    assert getNodeValuesTailToHead(linkedList) == [1, 2, 3, 4, 5, 6, 7][::-1]
+    assert linkedList.tail.value == 7
+    assert linkedList.head.value == 1
+
+
 
 
 
