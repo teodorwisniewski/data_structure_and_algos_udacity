@@ -68,15 +68,23 @@ class DoublyLinkedList:
             self.tail = node
             self.head = node
 
-    def insertBefore(self, node, nodeToInsert):
+    def insertBefore(self, node, node_to_insert):
+        if node_to_insert.next is not None or node_to_insert.prev is not None:
+            self.remove(node_to_insert)
+        if node.prev is None:
+            self.setHead(node_to_insert)
+        else:
+            old_prev = node.prev
+            node.prev = node_to_insert
+            node_to_insert.next = node
+            node_to_insert.prev = old_prev
+            old_prev.next = node_to_insert
+
+    def insertAfter(self, node, node_to_insert):
         # Write your code here.
         pass
 
-    def insertAfter(self, node, nodeToInsert):
-        # Write your code here.
-        pass
-
-    def insertAtPosition(self, position, nodeToInsert):
+    def insertAtPosition(self, position, node_to_insert):
         # Write your code here.
         pass
 
@@ -135,8 +143,6 @@ if __name__ == "__main__":
 
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 3, 5]
     assert getNodeValuesTailToHead(linkedList) == [5, 3, 2, 1, 4]
-
-
 
     linkedList.setTail(six)
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 3, 5, 6]
