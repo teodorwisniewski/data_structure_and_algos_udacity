@@ -55,6 +55,7 @@ class DoublyLinkedList:
             self.head.prev = None
         else:
             self.head = node
+            self.tail = node
 
     def setTail(self, node):
         old_tail = self.tail
@@ -245,7 +246,7 @@ if __name__ == "__main__":
 
     linkedList3 = DoublyLinkedList()
     linkedList3.setTail(one)
-    # assert getNodeValuesHeadToTail(linkedList3) == [1]
+    assert getNodeValuesHeadToTail(linkedList3) == [1]
     assert getNodeValuesTailToHead(linkedList3) == [1]
 
     # Test Case 4
@@ -261,9 +262,10 @@ if __name__ == "__main__":
     #   ]
     # }
     node = Node(1)
-    linkedList3 = DoublyLinkedList()
-    linkedList3.insertAtPosition(1, one)
-    assert getNodeValuesHeadToTail(linkedList3) == [1]
+    linkedList4 = DoublyLinkedList()
+    linkedList4.insertAtPosition(1, one)
+    assert getNodeValuesHeadToTail(linkedList4) == [1]
+    assert getNodeValuesTailToHead(linkedList4) == [1]
 
 
 
