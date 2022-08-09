@@ -152,6 +152,10 @@ class DoublyLinkedList:
             self.tail = new_tail
             node.next = None
             node.prev = None
+        else:
+            self.head = None
+            self.tail = None
+
 
     def containsNodeWithValue(self, value):
         current_node = self.head
@@ -326,6 +330,15 @@ if __name__ == "__main__":
     assert getNodeValuesTailToHead(linkedList) == [1, 2, 3, 4, 5, 6, 7][::-1]
     assert linkedList.tail.value == 7
     assert linkedList.head.value == 1
+
+    linkedList = DoublyLinkedList()
+    one = Node(1)
+    linkedList.setHead(one)
+    assert getNodeValuesHeadToTail(linkedList) == [1]
+    linkedList.remove(one)
+    assert getNodeValuesHeadToTail(linkedList) == []
+
+
 
 
 
