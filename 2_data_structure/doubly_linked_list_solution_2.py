@@ -44,8 +44,15 @@ class DoublyLinkedList:
         self.tail = None
 
     def setHead(self, node):
-        # Write your code here.
-        pass
+        if self.head is None:
+            self.head = node
+            self.tail = node
+        else:
+            old_head = self.head
+            self.head = node
+            self.head.next = old_head
+            old_head.prev = self.head
+
 
     def setTail(self, node):
         # Write your code here.
@@ -74,8 +81,6 @@ class DoublyLinkedList:
     def containsNodeWithValue(self, value:Any) -> bool:
 
         current_node = self.head
-        if current_node.value == value:
-            return True
         while current_node.next is not None:
             if current_node.value == value:
                 return True
@@ -106,6 +111,10 @@ if __name__ == "__main__":
 
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 3, 5]
     assert getNodeValuesTailToHead(linkedList) == [5, 3, 2, 1, 4]
+    assert linkedList.containsNodeWithValue(5)
+    assert linkedList.containsNodeWithValue(4)
+    assert linkedList.containsNodeWithValue(1)
+    assert not linkedList.containsNodeWithValue(111)
 
     # linkedList.setHead(five)
     # assert getNodeValuesHeadToTail(linkedList) == [5, 4, 1, 2, 3]
