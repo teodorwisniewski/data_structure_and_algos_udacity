@@ -72,8 +72,17 @@ class DoublyLinkedList:
             old_tail.next = self.tail
 
     def insertBefore(self, node, nodeToInsert):
-        # Write your code here.
-        pass
+
+        prev_node = nodeToInsert.prev
+        next_node = nodeToInsert.next
+        if prev_node is not None or next_node is not None:
+            self.remove(nodeToInsert)
+
+        old_prev = node.prev
+        node.prev = nodeToInsert
+        nodeToInsert.prev = old_prev
+        nodeToInsert.next = node
+        old_prev.next = nodeToInsert
 
     def insertAfter(self, node, nodeToInsert):
         # Write your code here.
@@ -89,7 +98,6 @@ class DoublyLinkedList:
             if current_node.value == value:
                 self.remove(current_node)
             current_node = current_node.next
-
 
 
     def remove(self, node):
