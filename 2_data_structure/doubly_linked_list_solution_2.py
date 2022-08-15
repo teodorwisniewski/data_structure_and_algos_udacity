@@ -66,10 +66,10 @@ class DoublyLinkedList:
         if self.tail is None:
             self.setHead(node)
         else:
-            old_tail = self.head
+            old_tail = self.tail
             self.tail = node
             self.tail.prev = old_tail
-            old_tail.prev = self.tail
+            old_tail.next = self.tail
 
     def insertBefore(self, node, nodeToInsert):
         # Write your code here.
