@@ -63,7 +63,7 @@ class DoublyLinkedList:
         next_node = node.next
         if prev_node is not None or next_node is not None:
             self.remove(node)
-        if self.tail is None:
+        if self.tail is None and self.head is None:
             self.setHead(node)
         else:
             old_tail = self.tail
@@ -84,8 +84,13 @@ class DoublyLinkedList:
         pass
 
     def removeNodesWithValue(self, value):
-        # Write your code here.
-        pass
+        current_node = self.head
+        while current_node.next is not None:
+            if current_node.value == value:
+                self.remove(current_node)
+            current_node = current_node.next
+
+
 
     def remove(self, node):
         prev_node = node.prev
@@ -95,8 +100,13 @@ class DoublyLinkedList:
             next_node.prev = prev_node
         elif prev_node is None and next_node is not None:
             next_node.prev = None
+            self.head = next_node
         elif prev_node is not None and next_node is None:
             prev_node.next = None
+            self.tail = prev_node
+        else:
+            self.head = None
+            self.tail = None
         node.prev = None
         node.next = None
 
@@ -143,7 +153,7 @@ if __name__ == "__main__":
     # linkedList.setHead(five)
     # assert getNodeValuesHeadToTail(linkedList) == [5, 4, 1, 2, 3]
     # assert getNodeValuesTailToHead(linkedList) == [3, 2, 1, 4, 5]
-    #
+
     # linkedList.setHead(five)
     # assert getNodeValuesHeadToTail(linkedList) == [5, 4, 1, 2, 3]
     # assert getNodeValuesTailToHead(linkedList) == [3, 2, 1, 4, 5]
