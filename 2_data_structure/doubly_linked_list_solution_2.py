@@ -44,6 +44,10 @@ class DoublyLinkedList:
         self.tail = None
 
     def setHead(self, node):
+        prev_node = node.prev
+        next_node = node.next
+        if prev_node is not None or next_node is not None:
+            self.remove(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -55,8 +59,17 @@ class DoublyLinkedList:
 
 
     def setTail(self, node):
-        # Write your code here.
-        pass
+        prev_node = node.prev
+        next_node = node.next
+        if prev_node is not None or next_node is not None:
+            self.remove(node)
+        if self.tail is None:
+            self.setHead(node)
+        else:
+            old_tail = self.head
+            self.tail = node
+            self.tail.prev = old_tail
+            old_tail.prev = self.tail
 
     def insertBefore(self, node, nodeToInsert):
         # Write your code here.
@@ -75,8 +88,17 @@ class DoublyLinkedList:
         pass
 
     def remove(self, node):
-        # Write your code here.
-        pass
+        prev_node = node.prev
+        next_node = node.next
+        if prev_node is not None and next_node is not None:
+            prev_node.next = next_node
+            next_node.prev = prev_node
+        elif prev_node is None and next_node is not None:
+            next_node.prev = None
+        elif prev_node is not None and next_node is None:
+            prev_node.next = None
+        node.prev = None
+        node.next = None
 
     def containsNodeWithValue(self, value:Any) -> bool:
 
@@ -85,6 +107,8 @@ class DoublyLinkedList:
             if current_node.value == value:
                 return True
             current_node = current_node.next
+        if current_node.value == value:
+            return True
         return False
 
 
