@@ -46,7 +46,12 @@ class DoublyLinkedList:
     def setHead(self, node):
         prev_node = node.prev
         next_node = node.next
-        if prev_node is not None or next_node is not None:
+        if self.head is None and prev_node is not None or next_node is not None:
+            if prev_node is not None and next_node is not None:
+                prev_node.next, next_node.prev = next_node, prev_node
+            node.next = None
+            node.prev = None
+        elif prev_node is not None or next_node is not None:
             self.remove(node)
         if self.head is None:
             self.head = node
@@ -112,6 +117,9 @@ class DoublyLinkedList:
         if prev_node is not None or next_node is not None:
             self.remove(nodeToInsert)
             flag = True
+        if position == 1:
+            self.setHead(nodeToInsert)
+            return
 
         counter = 1
         current_node = self.head
@@ -269,7 +277,7 @@ if __name__ == "__main__":
     bindNodes(four, five)
     linkedList2.setHead(one)
     assert getNodeValuesHeadToTail(linkedList2) == [1]
-    # assert getNodeValuesTailToHead(linkedList2) == [1]
+    assert getNodeValuesTailToHead(linkedList2) == [1]
 
     linkedList3 = DoublyLinkedList()
     linkedList3.setTail(one)
