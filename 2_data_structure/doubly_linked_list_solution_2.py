@@ -81,6 +81,7 @@ class DoublyLinkedList:
             self.remove(nodeToInsert)
         if node.prev is None:
             self.setHead(nodeToInsert)
+            return
         old_prev = node.prev
         node.prev = nodeToInsert
         nodeToInsert.prev = old_prev
