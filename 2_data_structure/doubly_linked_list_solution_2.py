@@ -106,8 +106,28 @@ class DoublyLinkedList:
         old_next.prev = nodeToInsert
 
     def insertAtPosition(self, position, nodeToInsert):
-        # Write your code here.
-        pass
+        prev_node = nodeToInsert.prev
+        next_node = nodeToInsert.next
+        flag = False
+        if prev_node is not None or next_node is not None:
+            self.remove(nodeToInsert)
+            flag = True
+
+        counter = 1
+        current_node = self.head
+        if current_node is None:
+            self.setHead(nodeToInsert)
+        while current_node.next is not None:
+            if counter == position:
+                self.insertBefore(current_node, nodeToInsert)
+                return
+            current_node = current_node.next
+            counter += 1
+        if (counter+1) == position and flag:
+            self.insertBefore(self.tail, nodeToInsert)
+            return
+        self.setTail(nodeToInsert)
+
 
     def removeNodesWithValue(self, value):
         current_node = self.head
@@ -115,7 +135,6 @@ class DoublyLinkedList:
             if current_node.value == value:
                 self.remove(current_node)
             current_node = current_node.next
-
 
     def remove(self, node):
         prev_node = node.prev
@@ -195,9 +214,9 @@ if __name__ == "__main__":
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 5, 3, 6, 3]
     assert getNodeValuesTailToHead(linkedList) == [3, 6, 3, 5, 2, 1, 4]
     #
-    linkedList.insertAfter(one, three2)
-    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 3, 2, 5, 3, 6]
-    assert getNodeValuesTailToHead(linkedList) == [6, 3, 5, 2, 3, 1, 4]
+    # linkedList.insertAfter(one, three2)
+    # assert getNodeValuesHeadToTail(linkedList) == [4, 1, 3, 2, 5, 3, 6]
+    # assert getNodeValuesTailToHead(linkedList) == [6, 3, 5, 2, 3, 1, 4]
 
     linkedList.insertAtPosition(1, three3)
     assert getNodeValuesHeadToTail(linkedList) == [3, 4, 1, 2, 5, 3, 6, 3]
@@ -211,9 +230,9 @@ if __name__ == "__main__":
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 5, 3, 6, 3, 3]
     assert getNodeValuesTailToHead(linkedList) == [4, 1, 2, 5, 3, 6, 3, 3][::-1]
 
-    # linkedList.insertAtPosition(3, three3)
-    # assert getNodeValuesHeadToTail(linkedList) == [4, 1, 3, 2, 5, 3, 6, 3]
-    # assert getNodeValuesTailToHead(linkedList) == [4, 1, 3, 2, 5, 3, 6, 3][::-1]
+    linkedList.insertAtPosition(3, three3)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 3, 2, 5, 3, 6, 3]
+    assert getNodeValuesTailToHead(linkedList) == [4, 1, 3, 2, 5, 3, 6, 3][::-1]
 
 
 
