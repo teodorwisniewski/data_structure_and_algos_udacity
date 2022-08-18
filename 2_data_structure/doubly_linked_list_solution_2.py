@@ -72,12 +72,15 @@ class DoublyLinkedList:
             old_tail.next = self.tail
 
     def insertBefore(self, node, nodeToInsert):
-
+        if nodeToInsert is node:
+            return
         prev_node = nodeToInsert.prev
         next_node = nodeToInsert.next
+
         if prev_node is not None or next_node is not None:
             self.remove(nodeToInsert)
-
+        if node.prev is None:
+            self.setHead(nodeToInsert)
         old_prev = node.prev
         node.prev = nodeToInsert
         nodeToInsert.prev = old_prev
@@ -85,8 +88,21 @@ class DoublyLinkedList:
         old_prev.next = nodeToInsert
 
     def insertAfter(self, node, nodeToInsert):
-        # Write your code here.
-        pass
+        if nodeToInsert is node:
+            return
+        prev_node = nodeToInsert.prev
+        next_node = nodeToInsert.next
+
+        if prev_node is not None or next_node is not None:
+            self.remove(nodeToInsert)
+        if node.next is None:
+            self.setTail(nodeToInsert)
+            return
+        old_next = node.next
+        node.next = nodeToInsert
+        nodeToInsert.next = old_next
+        nodeToInsert.prev = node
+        old_next.prev = nodeToInsert
 
     def insertAtPosition(self, position, nodeToInsert):
         # Write your code here.
@@ -178,9 +194,9 @@ if __name__ == "__main__":
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 2, 5, 3, 6, 3]
     assert getNodeValuesTailToHead(linkedList) == [3, 6, 3, 5, 2, 1, 4]
     #
-    # linkedList.insertAfter(one, three2)
-    # assert getNodeValuesHeadToTail(linkedList) == [4, 1, 3, 2, 5, 3, 6]
-    # assert getNodeValuesTailToHead(linkedList) == [6, 3, 5, 2, 3, 1, 4]
+    linkedList.insertAfter(one, three2)
+    assert getNodeValuesHeadToTail(linkedList) == [4, 1, 3, 2, 5, 3, 6]
+    assert getNodeValuesTailToHead(linkedList) == [6, 3, 5, 2, 3, 1, 4]
 
     linkedList.insertAtPosition(1, three3)
     assert getNodeValuesHeadToTail(linkedList) == [3, 4, 1, 2, 5, 3, 6, 3]
