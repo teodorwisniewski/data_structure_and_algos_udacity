@@ -60,12 +60,28 @@ class DoublyLinkedList:
         pass
 
     def insertBefore(self, node, nodeToInsert):
-        # Write your code here.
-        pass
+        if nodeToInsert is self.head and nodeToInsert is self.tail:
+            return
+        self.remove(nodeToInsert)
+        nodeToInsert.prev = node.prev
+        nodeToInsert.next = node
+        if node.prev is None:
+            self.head = nodeToInsert
+        else:
+            node.prev.next = nodeToInsert
+        node.prev = nodeToInsert
 
     def insertAfter(self, node, nodeToInsert):
-        # Write your code here.
-        pass
+        if nodeToInsert is self.head and nodeToInsert is self.tail:
+            return
+        self.remove(nodeToInsert)
+        nodeToInsert.next = node.next
+        nodeToInsert.before = node
+        if node.next is None:
+            self.tail = nodeToInsert
+        else:
+            node.next.prev = nodeToInsert
+        node.next = nodeToInsert
 
     def insertAtPosition(self, position, nodeToInsert):
         # Write your code here.
