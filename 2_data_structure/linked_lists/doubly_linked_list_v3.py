@@ -72,8 +72,14 @@ class DoublyLinkedList:
         pass
 
     def removeNodesWithValue(self, value):
-        # Write your code here.
-        pass
+        if not self.containsNodeWithValue(value):
+            return
+        current_node = self.head
+        while current_node is not None:
+            node_to_remove = node
+            node = node.next
+            if node_to_remove.value == value:
+                self.remove(current_node)
 
     def remove(self, node):
         if node is self.head:
@@ -81,7 +87,6 @@ class DoublyLinkedList:
         if node is self.tail:
             self.tail = self.tail.next
         self.remove_node_bindings(node)
-
 
     def containsNodeWithValue(self, value):
         current_node = self.head
