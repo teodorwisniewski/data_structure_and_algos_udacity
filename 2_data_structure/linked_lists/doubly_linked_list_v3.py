@@ -58,7 +58,6 @@ class DoublyLinkedList:
         else:
             self.insertBefore(self.head, node)
 
-
     def setTail(self, node):
         if self.tail is None:
             self.setHead(node)
@@ -82,7 +81,7 @@ class DoublyLinkedList:
             return
         self.remove(nodeToInsert)
         nodeToInsert.next = node.next
-        nodeToInsert.before = node
+        nodeToInsert.prev = node
         if node.next is None:
             self.tail = nodeToInsert
         else:
