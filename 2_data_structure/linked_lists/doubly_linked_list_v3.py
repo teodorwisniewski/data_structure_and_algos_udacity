@@ -104,16 +104,18 @@ class DoublyLinkedList:
             self.insertBefore(current_node, nodeToInsert)
 
 
+    # O(n) T | O(1) Space
     def removeNodesWithValue(self, value):
         if not self.containsNodeWithValue(value):
             return
         current_node = self.head
         while current_node is not None:
-            node_to_remove = node
-            node = node.next
+            node_to_remove = current_node
+            current_node = current_node.next
             if node_to_remove.value == value:
-                self.remove(current_node)
+                self.remove(node_to_remove)
 
+    # O(1) T | O(1) Space
     def remove(self, node):
         if node is self.head:
             self.head = self.head.next
@@ -121,6 +123,7 @@ class DoublyLinkedList:
             self.tail = self.tail.next
         self.remove_node_bindings(node)
 
+    # O(n) T | O(1) Space
     def containsNodeWithValue(self, value):
         current_node = self.head
         while current_node is not None and current_node.value != value:
