@@ -52,8 +52,8 @@ class DoublyLinkedList:
         self.tail = None
 
     def setHead(self, node):
-        if node.next is None or node.prev is None:
-            self.remove_node_bindings(node)
+        if node.next is not None or node.prev is not None:
+            self.remove(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -219,6 +219,10 @@ if __name__ == "__main__":
     linkedList.remove(two)
     assert getNodeValuesHeadToTail(linkedList) == [4, 1, 5, 6]
     assert getNodeValuesTailToHead(linkedList) == [6, 5, 1, 4]
+
+    linkedList.setHead(six)
+    assert getNodeValuesHeadToTail(linkedList) == [6, 4, 1, 5]
+    assert getNodeValuesTailToHead(linkedList) == [6, 4, 1, 5][::-1]
 
     assert linkedList.containsNodeWithValue(5) is True
     assert linkedList.containsNodeWithValue(9) is False
