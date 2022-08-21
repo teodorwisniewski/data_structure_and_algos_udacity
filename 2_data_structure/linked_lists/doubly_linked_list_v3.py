@@ -52,6 +52,8 @@ class DoublyLinkedList:
         self.tail = None
 
     def setHead(self, node):
+        if node.next is None or node.prev is None:
+            self.remove_node_bindings(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -102,7 +104,6 @@ class DoublyLinkedList:
         else:
             self.insertBefore(current_node, nodeToInsert)
 
-
     # O(n) T | O(1) Space
     def removeNodesWithValue(self, value):
         if not self.containsNodeWithValue(value):
@@ -119,7 +120,7 @@ class DoublyLinkedList:
         if node is self.head:
             self.head = self.head.next
         if node is self.tail:
-            self.tail = self.tail.next
+            self.tail = self.tail.prev
         self.remove_node_bindings(node)
 
     # O(n) T | O(1) Space
