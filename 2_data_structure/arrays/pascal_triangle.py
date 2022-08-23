@@ -11,6 +11,9 @@ def nth_row_pascal(n):
 
     output_row = [1]
 
+    for i in range(1, n+1):
+
+
 
 
     output_row.append(1)
