@@ -13,10 +13,16 @@ def nth_row_pascal(n):
 
     for i in range(1, n+1):
 
+        previous_row = output_row
+        output_row = [1]
 
+        for j in range(1, i):
 
+            num = previous_row[j] + previous_row[j-1]
+            output_row.append(num)
 
-    output_row.append(1)
+        output_row.append(1)
+
     return output_row
 
 
