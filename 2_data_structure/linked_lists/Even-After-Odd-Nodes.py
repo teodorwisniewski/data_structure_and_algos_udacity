@@ -68,8 +68,27 @@ def even_after_odd(head):
     return - updated list with all even elements are odd elements
     """
     current_node = head
+
+    even_nodes = []
+    odd_nodes = []
     while current_node is not None:
-        pass
+        if current_node.data % 2 == 0:
+            even_nodes.append(current_node)
+        else:
+            odd_nodes.append(current_node)
+        current_node = current_node.next
+
+    all_nodes = odd_nodes + even_nodes
+    head = all_nodes[0]
+    current_node = head
+    for i in range(1, len(all_nodes)):
+        next_node = all_nodes[i]
+        current_node.next = next_node
+        current_node = next_node
+
+    return head
+
+
 
 
 if __name__ == "__main__":
@@ -77,6 +96,9 @@ if __name__ == "__main__":
     solution = [1, 3, 5, 2, 4, 6]
 
     head = create_linked_list(arr)
+    head_sol = even_after_odd(head)
+    print_linked_list(head)
+    print_linked_list(head_sol)
     test_case = [head, solution]
     test_function(test_case)
 
