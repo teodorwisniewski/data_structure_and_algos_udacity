@@ -62,33 +62,75 @@ def test_function(test_case):
 
 
 
+# def even_after_odd(head):
+#     """
+#     :param - head - head of linked list
+#     return - updated list with all even elements are odd elements
+#     """
+#     current_node = head
+#
+#     even_nodes = []
+#     odd_nodes = []
+#     while current_node is not None:
+#         if current_node.data % 2 == 0:
+#             even_nodes.append(current_node)
+#         else:
+#             odd_nodes.append(current_node)
+#         current_node = current_node.next
+#
+#     all_nodes = odd_nodes + even_nodes
+#     head = all_nodes[0]
+#     current_node = head
+#     for i in range(1, len(all_nodes)):
+#         next_node = all_nodes[i]
+#         current_node.next = next_node
+#         current_node = next_node
+#
+#     return head
+
 def even_after_odd(head):
     """
     :param - head - head of linked list
     return - updated list with all even elements are odd elements
     """
+    even_head = None
+    even_tail = None
+
+    odd_head = None
+    odd_tail = None
     current_node = head
 
-    even_nodes = []
-    odd_nodes = []
     while current_node is not None:
         if current_node.data % 2 == 0:
-            even_nodes.append(current_node)
-        else:
-            odd_nodes.append(current_node)
-        current_node = current_node.next
+            if even_head is None:
+                even_head = current_node
+                even_tail = current_node
+            elif even_head.next is None:
+                even_head.next = current_node
+                even_tail = current_node
+            else:
+                even_tail.next = current_node
+                even_tail = current_node
 
-    all_nodes = odd_nodes + even_nodes
-    head = all_nodes[0]
-    current_node = head
-    for i in range(1, len(all_nodes)):
-        next_node = all_nodes[i]
-        current_node.next = next_node
-        current_node = next_node
+        if current_node.data % 2 != 0:
+            if odd_head is None:
+                odd_head = current_node
+                odd_tail = current_node
+            elif odd_head.next is None:
+                odd_head.next = current_node
+                odd_tail = current_node
+            else:
+                odd_tail.next = current_node
+                odd_tail = current_node
+        current_node = current_node.next
+    if odd_tail is not None:
+        odd_tail.next = None
+        head = odd_head
+        odd_tail.next = even_head
+    else:
+        head = even_head
 
     return head
-
-
 
 
 if __name__ == "__main__":
