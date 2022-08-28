@@ -22,7 +22,8 @@ class Stack:
         self.tail = None
         self.counter = 0
 
-    def push(self, node: Node):
+    def push(self, value):
+        node = Node(value)
         self.counter += 1
         if self.head is None:
             self.head = node
@@ -58,3 +59,17 @@ class Stack:
             return True
         return False
 
+
+if __name__ == "__main__":
+
+    stack = Stack()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    stack.push(4)
+
+    print(f"The lenght of our stack is {stack.size()}")
+    while not stack.is_empty():
+        print(f"stack pop {stack.pop().value}")
+
+    print(f"The lenght of our stack is {stack.size()}")
