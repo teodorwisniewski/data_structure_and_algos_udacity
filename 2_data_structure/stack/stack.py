@@ -57,3 +57,4 @@ class Stack:
         if self.head is None:
             return True
         return False
+
