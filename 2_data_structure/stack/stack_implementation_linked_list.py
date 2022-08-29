@@ -7,35 +7,34 @@ class Node:
 
 
 class Stack:
-
     def __init__(self):
         self.head = None
-        self.num_elements = 0
+        self.counter = 0
 
-    def push(self, value):
-        new_node = Node(value)
-        # if stack is empty
-        if self.head is None:
+    def size(self):
+        return self.counter
+
+    def is_empty(self):
+        return self.counter == 0
+
+    def push(self, item):
+        new_node = Node(item)
+        if self.is_empty():
             self.head = new_node
         else:
-            new_node.next = self.head  # place the new node at the head (top) of the linked list
+            new_node.next = self.head
             self.head = new_node
 
-        self.num_elements += 1
+        self.counter += 1
 
     def pop(self):
         if self.is_empty():
             return None
         value_to_pop = self.head.value
         self.head = self.head.next
-        self.num_elements -= 1
+
+        self.counter -= 1
         return value_to_pop
-
-    def size(self):
-        return self.num_elements
-
-    def is_empty(self):
-        return self.num_elements == 0
 
 
 if __name__ == "__main__":
