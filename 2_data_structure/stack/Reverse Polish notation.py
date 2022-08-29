@@ -54,7 +54,7 @@ def test_function(test_case):
 operators_mapping = {
     "+": operator.add,
     "-": operator.sub,
-    "/": operator.div,
+    "/": operator.truediv,
     "*": operator.mul
 }
 
@@ -70,14 +70,15 @@ def evaluate_post_fix(input_list):
     """
     stack = Stack()
 
-
-
     for el in input_list:
         if el not in "*/+-":
             stack.push(int(el))
         else:
-
-            stack.push()
+            second_el = stack.pop()
+            first_el = stack.pop()
+            operator_to_apply = operators_mapping[el]
+            operation_output = int(operator_to_apply(first_el, second_el))
+            stack.push(operation_output)
 
     return int(stack.pop())
 
